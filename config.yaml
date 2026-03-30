@@ -1,0 +1,61 @@
+# Feature extracted paths
+chembert_feature_dir: data/processed/chembert/extracted_features/  
+chembert_drug_feature_pkl: data/processed/chembert/extracted_features/drug_features.pkl  
+chembert_protein_feature_pkl: data/processed/chembert/extracted_features/protein_features.pkl 
+
+grover_feature_dir: data/processed/grover/extracted_features/ 
+grover_drug_feature_pkl: data/processed/grover/extracted_features/drug_features.pkl  
+grover_protein_feature_pkl: data/processed/grover/extracted_features/protein_features.pkl  
+
+graphmvp_feature_dir: data/processed/graphmvp/extracted_features/  
+graphmvp_drug_feature_pkl: data/processed/graphmvp/extracted_features/drug_features.pkl  
+graphmvp_protein_feature_pkl: data/processed/graphmvp/extracted_features/protein_features.pkl 
+
+
+# Data path
+data:
+  input_data_path: 'data/raw/davis_data.csv'                # Input data path for pretraining
+  deduplicated_data_dir: 'data/processed/deduplicated'      # Directory for deduplicated data
+
+
+# Protein
+protein_feature:
+  model_name: "esm2_t30_150M_UR50D"           # ESM2 model
+  max_seq_len: 1024                           # Protein sequence maximum length
+  batch_size: 32                              # Batch size for extraction
+
+
+# Drug
+drug_feature_type: graphmvp             # chembert, grover, graphmvp
+drug_feature:
+  model_path: "pretrained/deepchem_chemberta_77M_MLM"    # ChemBERTa model path
+  max_length: 256                       # SMILES maximum length
+  batch_size: 64                        # Batch size for extraction
+
+
+# Data split
+data_split:
+  strategy: 'random'                      # random, drug_cold, protein_cold, full_cold
+  val_ratio: 0.2                          # Val set ratio 
+  train_ratio: 0.8                        # Train set ratio
+  use_cross_validation: false             # Whether to use cross-validation 
+  rand_seed: 1                            # Random seed
+
+
+train:
+  use_early_stopping: true                   
+  patience: 500                              
+  num_epochs: 3000                              
+  lr_rate: 0.0002                            
+  batch_size: 256                            
+  weight_decay: 5e-5                         
+
+
+model_save_root: models/model/        # The root directory to save the model
+feature_mapping_dim: 1024               # Dimension of feature mapping
+
+
+mlp:
+  hidden_dims: [1024, 512, 256, 128, 64]     # Dimension of each layer in MLP
+  dropout_rate: 0.2                          
+
