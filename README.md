@@ -1,6 +1,8 @@
 # MP4NP: A Multimodal Pretrained Language Model Framework for Enhanced Natural Product-Target Affinity Prediction via Transfer Learning
 
-
+# Data
+    You can download the relevant data of KIBA from the following link:
+    https://drive.google.com/drive/folders/187P_2yoVOuMxWRWh4F0RcBLJzgMoXATa?usp=sharing
 
 # Running
 
